@@ -113,6 +113,44 @@ class StringCalculatorTest {
         String numbers = "1,\n";
         assertThrows(IllegalArgumentException.class, () -> s.add(numbers));
     }
+  
+    /**
+     * va a fallar porque por el momento solo se aceptan delimitadores default, 
+     * que son ',' y '/n'
+    */
+    @Test 
+    public void testNoDefaultDelimiter(){
+        StringCalculator s = new StringCalculator();
+        String numbers = "//;\n2;3";
+        int expectedAdd = 5;
+        int add = s.add(numbers);
+        assertEquals(expectedAdd,add);
+    }
+    
+    /**
+     * va a fallar porque hasta el momento no se tira una excepcion especial 
+     * para numeros negativos 
+     */
+    @Test 
+    public void testNegativesNotAllowed1(){
+        StringCalculator s = new StringCalculator();
+        String numbers = "1,3,4,-123";
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> s.add(numbers));
+        assertEquals("negatives not allowed: [-123]", exception.getMessage());
+    }
+
+    /**
+     * va a fallar porque hasta el momento no se tira una excepcion especial 
+     * cuando hay varios numeros negativos
+     */
+    @Test 
+    public void testNegativesNotAllowed2(){
+        StringCalculator s = new StringCalculator();
+        String numbers = "1,2,-10,3,4,555,-100,0,-20,0,2";
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> s.add(numbers));
+        assertEquals("negatives not allowed: [-10, -100, -20]", exception.getMessage());
+    }
+  
 
     /**
     public class StringCalculator{
