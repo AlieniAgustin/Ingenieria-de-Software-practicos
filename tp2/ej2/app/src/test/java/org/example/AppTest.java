@@ -1,60 +1,80 @@
 package org.example;
 
-/**
- * primero se resuelve el problema de isPrime con TDD
-*/
-
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 class AppTest {
-  
-  /**
-   * Creo una clase App que siempre retorne true en el isPrime 
+
+  // Método proveedor de implementaciones de PrimeValidator
+  static Stream<PrimeValidator> primeValidators() {
+    return Stream.of(
+        new SequentialPrimeValidator(),
+        new RecursivePrimeValidator()
+    );
+  }
+
+  /*
+   * Con esto, cada test se ejecuta dos veces: una con SequentialPrimeValidator y otra con RecursivePrimeValidator. 
+   * Asi podemos asegurarnos q todas las implementaciones pasan por los mismos casos de prueba sin repetir codigo
    */
-  @Test 
-  public void testIsPrime1(){
-    assertTrue(App.isPrime(2));
+
+  @ParameterizedTest
+  @MethodSource("primeValidators")
+  public void testGetFirstTwoPrimes(PrimeValidator validator){
+    PrimeGenerator generator = new PrimeGenerator(validator);
+    generator.getFirstNPrimes(2); 
   }
 
-  /**
-   * Va a dar error porque hasta el momento isPrime siempre retorna true 
-   */
-  @Test 
-  public void testIsPrime2(){
-    assertFalse(App.isPrime(6));
+  @ParameterizedTest
+  @MethodSource("primeValidators")
+  public void testGetFirstFourPrimes(PrimeValidator validator){
+    PrimeGenerator generator = new PrimeGenerator(validator);
+    generator.getFirstNPrimes(4); 
   }
 
-  /**
-   * va a fallar porque hasta el momento isPrime no tira excepcion cuando el numero es menor que 1 
-   */
-  @Test 
-  public void testIsPrime3(){
-    assertThrows(IllegalArgumentException.class, () -> App.isPrime(0));
+  @ParameterizedTest
+  @MethodSource("primeValidators")
+  public void testGetZeroPrimes(PrimeValidator validator){
+    PrimeGenerator generator = new PrimeGenerator(validator);
+    generator.getFirstNPrimes(0); 
   }
 
-  //A PARTIR DE AQUI, LOS TESTS DEL STRATEGY
-  @Test 
-  public void testPrimeServiceRecursive(){
-    PrimeService service = new PrimeService(new RecursivePrimeValidator());
-    assertTrue(service.check(2));
-    assertFalse(service.check(6));
-  }
-
-  @Test 
-  public void testPrimeServiceSequential(){
-    PrimeService service = new PrimeService(new SequentialPrimeValidator());
-    assertTrue(service.check(2));
-    assertFalse(service.check(6));
-  }
-
-  @Test
-  public void testSetPrimeValidator(){
-    PrimeService service = new PrimeService(new RecursivePrimeValidator());
-    assertTrue(service.check(7));
-    assertTrue(service.check(41));
-    service.setPrimeValidator(new SequentialPrimeValidator());
-    assertTrue(service.check(7));
-    assertTrue(service.check(41));
+  @ParameterizedTest
+  @MethodSource("primeValidators")
+  public void testGetFirstNPrimesException(PrimeValidator validator){
+    PrimeGenerator generator = new PrimeGenerator(validator);
+    assertThrows(IllegalArgumentException.class, () -> generator.getFirstNPrimes(-1));
   }
 }
+  /**
+   * antes de parametrizar los tests 
+  @Test 
+  public void testGetFirstTwoPrimes(){
+    PrimeGenerator generator = new PrimeGenerator(new SequentialPrimeValidator());
+    generator.getFirstNPrimes(2); 
+  }
+
+  @Test 
+  public void testGetFirstFourPrimes(){
+    PrimeGenerator generator = new PrimeGenerator(new RecursivePrimeValidator());
+    generator.getFirstNPrimes(4); 
+  }
+
+  @Test 
+  public void testGetZeroPrimes(){
+    PrimeGenerator generator = new PrimeGenerator(new SequentialPrimeValidator());
+    generator.getFirstNPrimes(0); 
+  }
+
+  @Test 
+  public void testGetFirstNPrimesException(){
+    PrimeGenerator generator = new PrimeGenerator(new RecursivePrimeValidator());
+    assertThrows(IllegalArgumentException.class, () -> generator.getFirstNPrimes(-1));
+  }
+  */
+
+

@@ -2,6 +2,8 @@ package org.example;
 
 public class RecursivePrimeValidator implements PrimeValidator{
 
+  public RecursivePrimeValidator(){ }
+
   /**
    * @pre n >= 1
    * @post retorna true sii n es un numero primo
@@ -26,4 +28,5 @@ public class RecursivePrimeValidator implements PrimeValidator{
 
     return (n % 2 != 0) && isPrime(n,m-1);
   }
+
 }

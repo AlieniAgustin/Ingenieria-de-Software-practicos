@@ -2,6 +2,12 @@ package org.example;
 
 public class SequentialPrimeValidator implements PrimeValidator{
 
+  public SequentialPrimeValidator(){ }
+
+  /**
+   * @pre n >= 1
+   * @post retorna true sii n es primo 
+   */
   public boolean isPrime(int n){
     if(n < 1) 
       throw new IllegalArgumentException();
