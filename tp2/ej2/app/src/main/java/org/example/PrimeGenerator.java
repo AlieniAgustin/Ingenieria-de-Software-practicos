@@ -24,7 +24,7 @@ public class PrimeGenerator {
     if(n < 0){
       throw new IllegalArgumentException();
     }else if(n == 0){
-      System.out.println("");
+      showOutput("");
     }else{
       primes.add(2); //el dos es el primer numero primo 
       int currentNumber = 3;
