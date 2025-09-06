@@ -7,10 +7,12 @@ public class PrimeGenerator {
    
   private List<Integer> primes;
   private PrimeValidator primeValidator;
+  private OutputStrategy output;
 
-  public PrimeGenerator(PrimeValidator primeValidator){
+  public PrimeGenerator(PrimeValidator primeValidator, OutputStrategy output){
     primes = new ArrayList<>();
     this.primeValidator = primeValidator;
+    this.output = output;
   }
 
   /**
@@ -35,8 +37,8 @@ public class PrimeGenerator {
         currentNumber += 2;
       }
 
-      String output = generateOutput();
-      System.out.println(output);
+      String output = listToString();
+      showOutput(output);
     }
   }
 
@@ -44,11 +46,15 @@ public class PrimeGenerator {
     return primeValidator.isPrime(n);
   }
 
-  private String generateOutput(){
+  private String listToString(){
     String output = "";
     for(int prime : primes)
       output += prime + " ";
     return output;
+  }
+
+  private void showOutput(String output){
+    this.output.showOutput(output);
   }
  
 }

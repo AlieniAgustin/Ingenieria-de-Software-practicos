@@ -1,56 +1,53 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.api.Assertions;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.io.IOException;
 
 class AppTest {
 
-  // Método proveedor de implementaciones de PrimeValidator
-  static Stream<PrimeValidator> primeValidators() {
-    return Stream.of(
-        new SequentialPrimeValidator(),
-        new RecursivePrimeValidator()
-    );
-  }
+    @ParameterizedTest
+    @CsvSource({
+        "Sequential, Console, 2",
+        "Sequential, Console, 4",
+        "Sequential, Console, 0",
+        "Sequential, Console, -1",
+        "Sequential, File, 2",
+        "Sequential, File, 4",
+        "Sequential, File, 0",
+        "Sequential, File, -1",
+        "Recursive, Console, 2",
+        "Recursive, Console, 4",
+        "Recursive, Console, 0",
+        "Recursive, Console, -1",
+        "Recursive, File, 2",
+        "Recursive, File, 4",
+        "Recursive, File, 0",
+        "Recursive, File, -1"
+    })
+    void testGetFirstNPrimes(String validatorType, String outputType, int n) throws IOException{
+        PrimeValidator validator = validatorType.equals("Sequential") 
+            ? new SequentialPrimeValidator() 
+            : new RecursivePrimeValidator();
 
-  /*
-   * Con esto, cada test se ejecuta dos veces: una con SequentialPrimeValidator y otra con RecursivePrimeValidator. 
-   * Asi podemos asegurarnos q todas las implementaciones pasan por los mismos casos de prueba sin repetir codigo
-   */
+        OutputStrategy output = outputType.equals("Console") 
+            ? new ConsoleOutputStrategy() 
+            : new FileOutputStrategy(java.nio.file.Files.createTempFile("primes", ".txt").toString());
 
-  @ParameterizedTest
-  @MethodSource("primeValidators")
-  public void testGetFirstTwoPrimes(PrimeValidator validator){
-    PrimeGenerator generator = new PrimeGenerator(validator);
-    generator.getFirstNPrimes(2); 
-  }
+        PrimeGenerator generator = new PrimeGenerator(validator, output);
 
-  @ParameterizedTest
-  @MethodSource("primeValidators")
-  public void testGetFirstFourPrimes(PrimeValidator validator){
-    PrimeGenerator generator = new PrimeGenerator(validator);
-    generator.getFirstNPrimes(4); 
-  }
-
-  @ParameterizedTest
-  @MethodSource("primeValidators")
-  public void testGetZeroPrimes(PrimeValidator validator){
-    PrimeGenerator generator = new PrimeGenerator(validator);
-    generator.getFirstNPrimes(0); 
-  }
-
-  @ParameterizedTest
-  @MethodSource("primeValidators")
-  public void testGetFirstNPrimesException(PrimeValidator validator){
-    PrimeGenerator generator = new PrimeGenerator(validator);
-    assertThrows(IllegalArgumentException.class, () -> generator.getFirstNPrimes(-1));
-  }
+        if (n < 0) {
+            Assertions.assertThrows(IllegalArgumentException.class, () -> generator.getFirstNPrimes(n));
+        } else {
+            generator.getFirstNPrimes(n); // solo ejecutar
+        }
+    }
 }
-  /**
+
+/**
    * antes de parametrizar los tests 
   @Test 
   public void testGetFirstTwoPrimes(){
