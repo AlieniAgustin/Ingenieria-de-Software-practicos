@@ -13,7 +13,7 @@ class AppTest {
       {'.','.','.','*','*','.','.','.'},
       {'.','.','.','.','.','.','.','.'}
     };
-    GameOfLife game = new GameOfLife(m);
+    GameOfLife game = new GameOfLife(m, new StandardLife());
     String expectedString = "Generation 1: \n4 8\n";
     expectedString += "........\n....*...\n...**...\n........\n";
     assertEquals(expectedString,game.toString());
@@ -27,7 +27,7 @@ class AppTest {
       {'.','.','.','*','*','.','.','.'},
       {'.','.','.','.','.','.','.','.'}
     };
-    GameOfLife game = new GameOfLife(m);
+    GameOfLife game = new GameOfLife(m, new StandardLife());
     game.nextGeneration();
     String expectedString = "Generation 2: \n4 8\n";
     expectedString += "........\n...**...\n...**...\n........\n";
