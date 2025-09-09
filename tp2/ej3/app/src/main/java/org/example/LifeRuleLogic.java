@@ -29,15 +29,15 @@ public abstract class LifeRuleLogic implements LifeRule{
         Cell currentCell = cells[i][j];
         int aliveNeighborsCount = getAliveNeighborsCount(i,j,cells);
 
-        if(isApplicableS(currentCell,aliveNeighborsCount))
-          finalCells[i][j].setAlive(true);
-        else if(isApplicableB(currentCell,aliveNeighborsCount))
-          finalCells[i][j].setAlive(true);
-        else 
-          finalCells[i][j].setAlive(false);
+        //en la proxima generacion la celula de la fila i, columna j 
+        //estara viva si se puede aplicar S o se puede aplicar B. Muerta en otro caso
+        boolean willBeAlive = isApplicableS(currentCell,aliveNeighborsCount) 
+                              || isApplicableB(currentCell,aliveNeighborsCount);
+
+        finalCells[i][j].setAlive(willBeAlive);
+
       }
     }
-
     return finalCells;
   }
 
@@ -73,9 +73,18 @@ public abstract class LifeRuleLogic implements LifeRule{
     return count;
   }
 
+  /**
+   * @pre aliveNeighborsCount >= 0
+   * @post indica si una celula muerta puede nacer 
+   */
   public boolean isApplicableB(Cell currentCell, int aliveNeighborsCount){
     return !currentCell.isAlive() && b.contains(aliveNeighborsCount);
   }
+
+  /**
+   * @pre aliveNeighborsCount >= 0
+   * @post indica si una celula viva puede sobrevivir 
+   */
   public boolean isApplicableS(Cell currentCell, int aliveNeighborsCount){
     return (currentCell.isAlive() && s.contains(aliveNeighborsCount));
   }
