@@ -7,17 +7,19 @@ public class GameOfLife{
   private int numberOfRows;
   private int numberOfColumns;
   private LifeRule rule;
+  private ColorScheme colorScheme;
 
-  public GameOfLife(char[][] input, LifeRule rule){
+  public GameOfLife(char[][] input, LifeRule rule, ColorScheme colorScheme){
     this.generationNumber = 1;
     this.rule = rule;
+    this.colorScheme = colorScheme;
     numberOfRows = input.length;
     numberOfColumns = input[0].length;
     cells = new Cell[numberOfRows][numberOfColumns];
 
     for(int i = 0; i < numberOfRows; i++)
       for(int j = 0; j < numberOfColumns; j++)
-        this.cells[i][j] = new Cell(input[i][j] == '*');
+        this.cells[i][j] = new Cell(input[i][j] == this.colorScheme.getLiveCellColor().toString().charAt(0), colorScheme);
   }
 
   public void nextGeneration(){

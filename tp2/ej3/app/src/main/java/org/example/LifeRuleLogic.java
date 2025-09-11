@@ -16,7 +16,7 @@ public abstract class LifeRuleLogic implements LifeRule{
 
     for(int i = 0; i < numberOfRows; i++)
       for(int j = 0; j < numberOfColumns; j++)
-        finalCells[i][j] = new Cell(cells[i][j].isAlive());
+        finalCells[i][j] = new Cell(cells[i][j].isAlive(), cells[i][j].getColorScheme());
   }
 
   public Cell[][] nextGeneration(Cell[][] cells){
