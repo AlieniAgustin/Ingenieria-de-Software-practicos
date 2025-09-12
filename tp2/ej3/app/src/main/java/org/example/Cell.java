@@ -3,10 +3,12 @@ package org.example;
 public class Cell{
   private boolean alive;
   private ColorScheme colorScheme;
+  private Color color;
 
-  public Cell(boolean alive, ColorScheme colorScheme){
+  public Cell(boolean alive, ColorScheme colorScheme, Color color){
     this.alive = alive;
     this.colorScheme = colorScheme;
+    this.color = color;
   }
 
   public boolean isAlive(){
@@ -18,13 +20,15 @@ public class Cell{
   }
 
   public Color getColor(){
-    return (this.alive) ? colorScheme.getLiveCellColor() : colorScheme.getDeadCellColor();
+    return color;
+  }
+
+  public void setColor(Color color){
+    this.color = color;
   }
 
   public String toString(){
-    //el toString de una celula sera la primer letra del color que les correponde en mayuscula
-    String answer = alive ? colorScheme.getLiveCellColor().toString() : colorScheme.getDeadCellColor().toString();
-    return answer;
+    return color.toString();
   }
 
   public ColorScheme getColorScheme(){

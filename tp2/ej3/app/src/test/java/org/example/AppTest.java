@@ -19,107 +19,36 @@ class AppTest {
  *  -una lista con los strings esperados para las siguientes generaciones
  */
   private static Stream<Arguments> provideGamesAndExpectations(){
-    char[][] classicMatrix = {
+    char[][] classicMatrix1 = {
       {'B','B','B','B','B','B','B','B'},
-      {'B','B','B','B','W','B','B','B'},
-      {'B','B','B','W','W','B','B','B'},
+      {'B','B','B','B','R','B','B','B'},
+      {'B','B','B','R','W','B','B','B'},
       {'B','B','B','B','B','B','B','B'}
     }; 
 
-    char[][] bocaMatrix = {
+     char[][] classicMatrix2 = {
       {'B','B','B','B','B','B','B','B'},
-      {'B','B','B','B','Y','B','B','B'},
-      {'B','B','B','Y','Y','B','B','B'},
+      {'B','B','B','B','W','B','B','B'},
+      {'B','B','B','G','R','B','B','B'},
       {'B','B','B','B','B','B','B','B'}
     };
-
-    char[][] riverMatrix = {
-      {'R','R','R','R','R','R','R','R'},
-      {'R','R','R','R','W','R','R','R'},
-      {'R','R','R','W','W','R','R','R'},
-      {'R','R','R','R','R','R','R','R'}
-    };
-    
     return Stream.of(
       Arguments.of(
-        new StandardLife(),
-        classicMatrix,
+        classicMatrix1,
         new ClassicColorScheme(),
+        new InmigrationVariant(),
         List.of(
-          "Generation 2: \n4 8\nBBBBBBBB\nBBBWWBBB\nBBBWWBBB\nBBBBBBBB\n", //esperado tras 1 generacion 
-          "Generation 3: \n4 8\nBBBBBBBB\nBBBWWBBB\nBBBWWBBB\nBBBBBBBB\n" //esperado tras 2 generaciones 
+          "Generation 2: \n4 8\nBBBBBBBB\nBBBRRBBB\nBBBRWBBB\nBBBBBBBB\n", //esperado tras 1 generacion 
+          "Generation 3: \n4 8\nBBBBBBBB\nBBBRRBBB\nBBBRWBBB\nBBBBBBBB\n" //esperado tras 2 generaciones 
         )
-      ),  
-      Arguments.of(
-        new HighLife(),
-        classicMatrix,
+      ),
+       Arguments.of(
+        classicMatrix2,
         new ClassicColorScheme(),
+        new QuadLifeVariant(),
         List.of(
-          "Generation 2: \n4 8\nBBBBBBBB\nBBBWWBBB\nBBBWWBBB\nBBBBBBBB\n", //esperado tras 1 generacion 
-          "Generation 3: \n4 8\nBBBBBBBB\nBBBWWBBB\nBBBWWBBB\nBBBBBBBB\n" //esperado tras 2 generaciones 
-        )
-      ),
-      Arguments.of(
-        new SeedLife(),
-        classicMatrix,
-        new ClassicColorScheme(),
-        List.of(
-          "Generation 2: \n4 8\nBBBBBBBB\nBBBBBWBB\nBBBBBWBB\nBBBWWBBB\n", //esperado tras 1 generacion 
-          "Generation 3: \n4 8\nBBBBBBBB\nBBBBWBWB\nBBBWBBWB\nBBBBBWBB\n" //esperado tras 2 generaciones 
-        )
-      ),
-      Arguments.of(
-        new StandardLife(),
-        bocaMatrix,
-        new BocaColorScheme(),
-        List.of(
-          "Generation 2: \n4 8\nBBBBBBBB\nBBBYYBBB\nBBBYYBBB\nBBBBBBBB\n", //esperado tras 1 generacion 
-          "Generation 3: \n4 8\nBBBBBBBB\nBBBYYBBB\nBBBYYBBB\nBBBBBBBB\n" //esperado tras 2 generaciones 
-        )
-      ),  
-      Arguments.of(
-        new HighLife(),
-        bocaMatrix,
-        new BocaColorScheme(),
-        List.of(
-          "Generation 2: \n4 8\nBBBBBBBB\nBBBYYBBB\nBBBYYBBB\nBBBBBBBB\n", //esperado tras 1 generacion 
-          "Generation 3: \n4 8\nBBBBBBBB\nBBBYYBBB\nBBBYYBBB\nBBBBBBBB\n" //esperado tras 2 generaciones 
-        )
-      ),
-      Arguments.of(
-        new SeedLife(),
-        bocaMatrix,
-        new BocaColorScheme(),
-        List.of(
-          "Generation 2: \n4 8\nBBBBBBBB\nBBBBBYBB\nBBBBBYBB\nBBBYYBBB\n", //esperado tras 1 generacion 
-          "Generation 3: \n4 8\nBBBBBBBB\nBBBBYBYB\nBBBYBBYB\nBBBBBYBB\n" //esperado tras 2 generaciones 
-        )
-      ),
-      Arguments.of(
-        new StandardLife(),
-        riverMatrix,
-        new RiverColorScheme(),
-        List.of(
-          "Generation 2: \n4 8\nRRRRRRRR\nRRRWWRRR\nRRRWWRRR\nRRRRRRRR\n", //esperado tras 1 generacion 
-          "Generation 3: \n4 8\nRRRRRRRR\nRRRWWRRR\nRRRWWRRR\nRRRRRRRR\n" //esperado tras 2 generaciones 
-        )
-      ),  
-      Arguments.of(
-        new HighLife(),
-        riverMatrix,
-        new RiverColorScheme(),
-        List.of(
-          "Generation 2: \n4 8\nRRRRRRRR\nRRRWWRRR\nRRRWWRRR\nRRRRRRRR\n", //esperado tras 1 generacion 
-          "Generation 3: \n4 8\nRRRRRRRR\nRRRWWRRR\nRRRWWRRR\nRRRRRRRR\n" //esperado tras 2 generaciones 
-        )
-      ),
-      Arguments.of(
-        new SeedLife(),
-        riverMatrix,
-        new RiverColorScheme(),
-        List.of(
-          "Generation 2: \n4 8\nRRRRRRRR\nRRRRRWRR\nRRRRRWRR\nRRRWWRRR\n", //esperado tras 1 generacion 
-          "Generation 3: \n4 8\nRRRRRRRR\nRRRRWRWR\nRRRWRRWR\nRRRRRWRR\n" //esperado tras 2 generaciones 
+          "Generation 2: \n4 8\nBBBBBBBB\nBBBYWBBB\nBBBGRBBB\nBBBBBBBB\n", //esperado tras 1 generacion 
+          "Generation 3: \n4 8\nBBBBBBBB\nBBBYWBBB\nBBBGRBBB\nBBBBBBBB\n" //esperado tras 2 generaciones 
         )
       )
     );
@@ -130,8 +59,8 @@ class AppTest {
    */
   @ParameterizedTest 
   @MethodSource("provideGamesAndExpectations")
-  void testMultipleGenerations(LifeRule rule, char[][] input, ColorScheme colorScheme, List<String> expectedGenerations){
-    GameOfLife game = new GameOfLife(input,rule,colorScheme);
+  void testMultipleGenerations(char[][] input, ColorScheme colorScheme, GameOfLifeVariant variant, List<String> expectedGenerations){
+    GameOfLife game = new GameOfLife(input,colorScheme,variant);
 
     //recorro la lista de estados separados
     for(String expected : expectedGenerations){

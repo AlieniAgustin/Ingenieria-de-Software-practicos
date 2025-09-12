@@ -20,4 +20,19 @@ public class Color{
     return firstCapitalLetter;
   }
 
+  public boolean equals(Object obj){
+    if(obj == this) 
+      return true;
+
+    if(!(obj instanceof Color))
+      return false;
+    
+    Color aux = (Color) obj;
+    return aux.getColorName().equals(this.colorName);
+  }
+
+  public int hashCode(){
+    return colorName.hashCode();
+  }
+
 }
