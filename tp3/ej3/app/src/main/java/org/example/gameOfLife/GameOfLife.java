@@ -4,7 +4,9 @@ import org.example.cell.Cell;
 import org.example.gameOfLifeVariant.GameOfLifeVariant;
 import org.example.colorScheme.ColorScheme;
 import org.example.color.Color;
+import org.example.display.Observer;
 import java.util.List;
+import java.util.ArrayList;
 
 public class GameOfLife{
 
@@ -14,7 +16,7 @@ public class GameOfLife{
   private int numberOfColumns;
   private GameOfLifeVariant variant;
   private ColorScheme colorScheme;
-
+  private List<Observer> observers;
 
   /**
   * IMPORTANTE:
@@ -24,6 +26,7 @@ public class GameOfLife{
   * o una lógica distinta para mapear el `char` al `Color`.
   */
   public GameOfLife(char[][] input, ColorScheme colorScheme, GameOfLifeVariant variant){
+    this.observers = new ArrayList<>();
     this.generationNumber = 1;
     this.colorScheme = colorScheme;
     this.variant = variant;
@@ -56,8 +59,9 @@ public class GameOfLife{
   }
 
   public void nextGeneration(){
-    cells = variant.nextGeneration(cells);
+    cells = variant.nextGeneration(cells); 
     this.generationNumber++;
+    notifyObservers();
   }
  
   public String toString(){
@@ -72,6 +76,23 @@ public class GameOfLife{
     }
     
     return answer;
+  }
+
+  public void registerObserver(Observer o){
+    observers.add(o);
+  }
+
+  public void removeObserver(Observer o){
+    observers.remove(o);
+  }
+
+  public void notifyObservers(){
+    for(Observer o : observers)
+      o.update();
+  }
+
+  public Cell[][] getCells(){
+    return cells;
   }
 
 }
