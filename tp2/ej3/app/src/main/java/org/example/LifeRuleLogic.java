@@ -50,12 +50,16 @@ public abstract class LifeRuleLogic implements LifeRule{
     return finalCells;
   }
 
+  /**
+   * @pre 0 <= row < cells.length && 0 <= column < cells[0].length
+   * @post retorna la cantidad de celulas vecinas vivas de cells[row][column]
+   */
   private int getAliveNeighborsCount(int row, int column, Cell[][] cells) {
     int count = 0;
     int numberOfRows = cells.length;
     int numberOfColumns = cells[0].length;
 
-    //recorremos las posiciones vecinas relativas
+    //recorro las posiciones vecinas relativas
     //el i se usa para las filas (-1 la de arriba, 0 actual, 1 la de abajo)
     //el j se usa para las columnas (-1 la de izquierda, 0 actual, 1 la de derecha)
     for (int i = -1; i <= 1; i++) {
