@@ -9,21 +9,21 @@ public class Main{
 
   public static void main(String[] args){
     ColorScheme colorScheme = new BocaColorScheme();
-    GameOfLifeVariant variant = new InmigrationVariant();
-    char[][] input = {
+    GameOfLifeVariant variant = new InmigrationVariant(); char[][] input = {
       {'w','b','w','w','w'},
       {'w','w','y','w','w'},
       {'b','b','y','w','w'},
       {'w','w','w','w','w'},
       {'w','w','w','w','w'}
     };
+
     GameOfLife game = new GameOfLife(input,colorScheme,variant);
-    Observer display = new BlackAliveDisplay(game);
-    game.registerObserver(display);
+
+    Observer black = new BlackAliveDisplay(game);
+    Observer white = new WhiteAliveDisplay(game);
+    game.registerObserver(black);
     game.nextGeneration();
-    game.removeObserver(display);
-    display = new WhiteAliveDisplay(game);
-    game.registerObserver(display);
+    game.registerObserver(white);
     game.nextGeneration();
   }
 

@@ -4,14 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.stream.Stream;
-
+import java.io.ByteArrayOutputStream; 
+import java.io.PrintStream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.example.colorScheme.*;
 import org.example.gameOfLifeVariant.*; 
 import org.example.gameOfLife.*;
+import org.example.display.*;
 
 class AppTest {
 
@@ -71,6 +74,103 @@ class AppTest {
       game.nextGeneration();
       assertEquals(expected,game.toString());
     }
+  }
+
+  @Test 
+  public void testBlackAndWhiteAliveDisplay(){
+    System.out.println("test black and white alive display");
+    ColorScheme colorScheme = new BocaColorScheme();
+    GameOfLifeVariant variant = new InmigrationVariant();
+    char[][] input = {
+      {'w','b','w','w','w'},
+      {'w','w','y','w','w'},
+      {'b','b','y','w','w'},
+      {'w','w','w','w','w'},
+      {'w','w','w','w','w'}
+    };
+
+    GameOfLife game = new GameOfLife(input,colorScheme,variant);
+    Observer black = new BlackAliveDisplay(game);
+    //Observer white = new WhiteAliveDisplay(game);
+    game.registerObserver(black);
+    game.nextGeneration();
+    //game.registerObserver(white);
+    game.nextGeneration();
+    game.nextGeneration();
+    game.nextGeneration();
+    game.nextGeneration();
+    game.nextGeneration();
+    game.nextGeneration();
+    game.nextGeneration();
+    game.nextGeneration();
+  }
+
+  @Test 
+  public void testStats1(){
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    PrintStream originalOut = System.out;
+    System.setOut(new PrintStream(outContent));
+
+    ColorScheme colorScheme = new BocaColorScheme();
+    GameOfLifeVariant variant = new InmigrationVariant();
+    char[][] input = {
+      {'w','b','w','w','w'},
+      {'w','w','y','w','w'},
+      {'b','b','y','w','w'},
+      {'w','w','w','w','w'},
+      {'w','w','w','w','w'}
+    };
+
+    GameOfLife game = new GameOfLife(input,colorScheme,variant);
+    Observer stats = new StatsDisplay(game);
+    game.registerObserver(stats);
+    String expected = "Display 1: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 2: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 3: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 4: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 5: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 6: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 7: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 8: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 9: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 4\nNumber of dead cells: 21\n";
+    expected += "Average number of live cells: 4.88\nAverage number of dead cells: 20.11";
+    game.nextGeneration();
+    expected += System.lineSeparator();
+    assertEquals(expected,outContent.toString());
+    System.setOut(originalOut);
   }
 
 }
