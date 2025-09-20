@@ -104,7 +104,7 @@ class AppTest {
   }
 
   @Test 
-  public void testStats1(){
+  public void testStatsDisplay(){
     ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     PrintStream originalOut = System.out;
     System.setOut(new PrintStream(outContent));
@@ -165,6 +165,76 @@ class AppTest {
     expected += "Number of cells: 25\nNumber of living cells: 4\nNumber of dead cells: 21\n";
     expected += "Average number of live cells: 4.88\nAverage number of dead cells: 20.11";
     game.nextGeneration();
+    expected += System.lineSeparator();
+    assertEquals(expected,outContent.toString());
+    System.setOut(originalOut);
+  }
+
+  @Test 
+  public void testGenerationRulesDisplay(){
+    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    PrintStream originalOut = System.out;
+    System.setOut(new PrintStream(outContent));
+
+    ColorScheme colorScheme = new BocaColorScheme();
+    GameOfLifeVariant variant = new InmigrationVariant();
+    char[][] input = {
+      {'w','b','w','w','w'},
+      {'w','w','y','w','w'},
+      {'b','b','y','w','w'},
+      {'w','w','w','w','w'},
+      {'w','w','w','w','w'}
+    };
+
+    GameOfLife game = new GameOfLife(input,colorScheme,variant);
+    Observer stats = new GenerationRulesDisplay(game);
+    String expected = "Display 1: \n";
+    expected += "Last gen: Alive: 0.12, Born: 0.08, Died: 0.08\n";
+    expected += "Average: Alive: 0.12, Born: 0.08, Died: 0.08\n";
+    game.nextGeneration();
+    
+    
+    expected += "Display 2: \n";
+    expected += "Last gen: Alive: 0.12, Born: 0.08, Died: 0.08\n";
+    expected += "Average: Alive: 0.12, Born: 0.08, Died: 0.08";
+    game.nextGeneration();
+    
+    /*
+    expected += "Display 3: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 4: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 5: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 6: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 7: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 8: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
+    expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
+    game.nextGeneration();
+
+    expected += "Display 9: \n";
+    expected += "Number of cells: 25\nNumber of living cells: 4\nNumber of dead cells: 21\n";
+    expected += "Average number of live cells: 4.88\nAverage number of dead cells: 20.11";
+    game.nextGeneration();
+    */
     expected += System.lineSeparator();
     assertEquals(expected,outContent.toString());
     System.setOut(originalOut);

@@ -12,6 +12,9 @@ public abstract class LifeRuleLogic implements LifeRule{
   protected List<Integer> b;
   protected List<Integer> s;
   private Cell[][] finalCells;
+  private int cellsDied;
+  private int cellsSurvived;
+  private int cellsBorn;
  
   private void cloneMatrix(Cell[][] cells){
     int numberOfRows = cells.length;
@@ -27,6 +30,9 @@ public abstract class LifeRuleLogic implements LifeRule{
     cloneMatrix(cells);
     int numberOfRows = cells.length;
     int numberOfColumns = cells[0].length;
+    cellsBorn = 0;
+    cellsDied = 0;
+    cellsSurvived = 0;
 
     for(int i = 0; i < numberOfRows; i++){
       for(int j = 0; j < numberOfColumns; j++){
@@ -40,17 +46,34 @@ public abstract class LifeRuleLogic implements LifeRule{
 
         finalCells[i][j].setAlive(willBeAlive);
         
-        //si la celula nace => uso el ColorStrategy para designar su nuevo color 
+        //si la celula nace => uso el ColorStrategy para designar su nuevo color e incremento cellsBorn 
         if(!currentCell.isAlive() && willBeAlive){
           Map<Color,Integer> colorsOfLivingNeighbors = getColorsOfLivingNeighbors(i,j,cells);
           finalCells[i][j].setColor(colorStrategy.getNewColorForRevive(colorsOfLivingNeighbors));
+          cellsBorn++;
         }else if(currentCell.isAlive() && !willBeAlive){
-          //si la celula muere => toma el color de muerta designado por su colorScheme
+          //si la celula muere => toma el color de muerta designado por su colorScheme e incremento cellsDied 
           finalCells[i][j].setColor(cells[i][j].getColorScheme().getDeadCellColor());
+          cellsDied++;
+        }else if(currentCell.isAlive() && willBeAlive){
+          //si la celula esta viva y sobrevive, incremento cellsSurvived 
+          cellsSurvived++;
         }
       }
     }
     return finalCells;
+  }
+
+  public int getCellsDied(){
+    return cellsDied;
+  }
+
+  public int getCellsSurvived(){
+    return cellsSurvived;
+  }
+
+  public int getCellsBorn(){
+    return cellsBorn;
   }
 
   /**

@@ -95,4 +95,15 @@ public class GameOfLife{
     return cells;
   }
 
+  public int getCellsDied(){
+    return variant.getCellsDied();
+  }
+
+  public int getCellsSurvived(){
+    return variant.getCellsSurvived();
+  }
+
+  public int getCellsBorn(){
+    return variant.getCellsBorn();
+  }
 }

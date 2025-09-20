@@ -20,4 +20,16 @@ public class InmigrationVariant implements GameOfLifeVariant{
     return lifeRule.nextGeneration(cells,colorStrategy);
   }
 
+  public int getCellsDied(){
+    return lifeRule.getCellsDied();
+  }
+
+  public int getCellsSurvived(){
+    return lifeRule.getCellsSurvived();
+  }
+
+  public int getCellsBorn(){
+    return lifeRule.getCellsBorn();
+  }
+
 }
