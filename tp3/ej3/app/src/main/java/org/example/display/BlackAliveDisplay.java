@@ -10,6 +10,7 @@ public class BlackAliveDisplay implements Observer,DisplayElement{
 
   public BlackAliveDisplay(GameOfLife game){
     this.game = game;
+    this.game.registerObserver(this);
     this.cells = this.game.getCells();
   }
 

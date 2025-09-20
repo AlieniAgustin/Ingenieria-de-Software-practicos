@@ -23,6 +23,7 @@ public class StatsDisplay implements Observer,DisplayElement{
 
   public StatsDisplay(GameOfLife game){
     this.game = game;
+    this.game.registerObserver(this);
     this.cells = this.game.getCells();
     numberOfCells = this.cells.length * this.cells[0].length;
     numberOfCellsDisplayed = 0;

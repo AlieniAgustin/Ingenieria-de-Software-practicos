@@ -10,6 +10,7 @@ public class WhiteAliveDisplay implements Observer,DisplayElement{
 
   public WhiteAliveDisplay(GameOfLife game){
     this.game = game;
+    this.game.registerObserver(this);
     this.cells = this.game.getCells();
   }
 

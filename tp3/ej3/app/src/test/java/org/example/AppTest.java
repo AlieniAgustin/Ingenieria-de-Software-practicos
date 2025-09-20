@@ -92,9 +92,7 @@ class AppTest {
     GameOfLife game = new GameOfLife(input,colorScheme,variant);
     Observer black = new BlackAliveDisplay(game);
     //Observer white = new WhiteAliveDisplay(game);
-    game.registerObserver(black);
     game.nextGeneration();
-    //game.registerObserver(white);
     game.nextGeneration();
     game.nextGeneration();
     game.nextGeneration();
@@ -123,7 +121,6 @@ class AppTest {
 
     GameOfLife game = new GameOfLife(input,colorScheme,variant);
     Observer stats = new StatsDisplay(game);
-    game.registerObserver(stats);
     String expected = "Display 1: \n";
     expected += "Number of cells: 25\nNumber of living cells: 5\nNumber of dead cells: 20\n";
     expected += "Average number of live cells: 5\nAverage number of dead cells: 20\n";
