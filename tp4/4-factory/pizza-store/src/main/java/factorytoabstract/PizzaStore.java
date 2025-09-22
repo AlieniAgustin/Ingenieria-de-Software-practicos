@@ -2,21 +2,18 @@ package factorytoabstract;
 
 public abstract class PizzaStore {
  
-	abstract VeggiePizza createVeggiePizza();
-	abstract PepperoniPizza createPepperoniPizza();
-  abstract ClamPizza createClamPizza();
-	abstract CheesePizza createCheesePizza();
+  protected PizzaFactory factory;
 
 	public Pizza orderPizza(String type) {
     Pizza pizza;
     if(type.equals("veggie"))
-      pizza = createVeggiePizza();
+      pizza = factory.createVeggiePizza();
     else if(type.equals("pepperoni"))
-      pizza = createPepperoniPizza();
+      pizza = factory.createPepperoniPizza();
     else if(type.equals("clam"))
-      pizza = createClamPizza();
+      pizza = factory.createClamPizza();
     else if(type.equals("cheese"))
-      pizza = createCheesePizza();
+      pizza = factory.createCheesePizza();
     else 
       throw new IllegalArgumentException();
 		
