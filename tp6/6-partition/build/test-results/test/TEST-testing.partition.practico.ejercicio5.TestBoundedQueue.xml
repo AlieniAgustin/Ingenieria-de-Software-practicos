@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="testing.partition.practico.ejercicio5.TestBoundedQueue" tests="12" skipped="0" failures="0" errors="0" timestamp="2025-10-15T22:42:53" hostname="alieni" time="0.042">
+  <properties/>
+  <testcase name="queueWithZeroCapacity()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.004"/>
+  <testcase name="baseTest()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.003"/>
+  <testcase name="enqueueInNoEmptyAndNoFullQueue()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.001"/>
+  <testcase name="constructorShouldIllegalArgumentExceptionForNegativeCapacity()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.002"/>
+  <testcase name="dequeueShouldIllegalStateExceptionForEmptyQueue()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.002"/>
+  <testcase name="dequeueInFullQueue()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.002"/>
+  <testcase name="enqueueShouldNullPointerExceptionForNullElement()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.002"/>
+  <testcase name="enqueueShouldIllegalStateExceptionForFullQueue()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.002"/>
+  <testcase name="queueIsNotFullBecauseQueueIsEmpty()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.001"/>
+  <testcase name="QueueIsFullAndQueueIsNotEmpty()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.001"/>
+  <testcase name="queueIsNotEmptyBecauseQueueIsFull()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.002"/>
+  <testcase name="queueIsEmpty()" classname="testing.partition.practico.ejercicio5.TestBoundedQueue" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

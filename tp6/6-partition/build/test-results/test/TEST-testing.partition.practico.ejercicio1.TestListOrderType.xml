@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="testing.partition.practico.ejercicio1.TestListOrderType" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-10-15T00:17:54" hostname="alieni" time="0.045">
+<testsuite name="testing.partition.practico.ejercicio1.TestListOrderType" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-10-15T22:42:53" hostname="alieni" time="0.045">
   <properties/>
-  <testcase name="purelyDescendingListTest()" classname="testing.partition.practico.ejercicio1.TestListOrderType" time="0.032"/>
+  <testcase name="purelyDescendingListTest()" classname="testing.partition.practico.ejercicio1.TestListOrderType" time="0.031"/>
   <testcase name="purelyAscendingListTest()" classname="testing.partition.practico.ejercicio1.TestListOrderType" time="0.002"/>
   <testcase name="testListWithAllItsElementsEqual()" classname="testing.partition.practico.ejercicio1.TestListOrderType" time="0.002"/>
-  <testcase name="purelyUnorderedListTest()" classname="testing.partition.practico.ejercicio1.TestListOrderType" time="0.002"/>
+  <testcase name="purelyUnorderedListTest()" classname="testing.partition.practico.ejercicio1.TestListOrderType" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
