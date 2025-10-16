@@ -16,11 +16,15 @@ public class PatternIndex {
 	 */
 	public static int patternIndex (String subject, String pattern)
 	{
+
 		final int NOTFOUND = -1;
 		int  iSub = 0, rtnIndex = NOTFOUND;
 		boolean isPat  = false;
 		int subjectLen = subject.length();
 		int patternLen = pattern.length();
+
+    if(patternLen == 0)
+      return 0;
 
 		while (isPat == false && iSub + patternLen - 1 < subjectLen)
 		{
