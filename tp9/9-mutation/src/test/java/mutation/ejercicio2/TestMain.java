@@ -37,7 +37,6 @@ public class TestMain{
     int currentSum = Main.sum(x);
     int expectedSum = 10;
     assertEquals(expectedSum,currentSum);
-
   }
 }
 

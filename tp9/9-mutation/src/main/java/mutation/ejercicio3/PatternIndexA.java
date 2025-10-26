@@ -8,9 +8,6 @@ package mutation.ejercicio3;
 
 public class PatternIndexA
 {
-
-
-
   /**
     * Find index of pattern in subject string
     * 
