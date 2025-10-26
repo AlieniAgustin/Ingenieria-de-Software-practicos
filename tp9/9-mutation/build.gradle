@@ -70,7 +70,9 @@ jacocoTestReport {
 
 pitest {
 	junit5PluginVersion = '1.2.3'
-	targetClasses = ['mutation.ejercicio4.*']
+  testPlugin = 'junit5'
+	targetClasses = ['mutation.*']
+  targetTests = ['mutation.*']
 //	pitestVersion = '1.20.3'
 	threads = 4
 	outputFormats = ['XML', 'HTML']
