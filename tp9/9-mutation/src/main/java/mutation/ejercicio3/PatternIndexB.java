@@ -36,8 +36,8 @@ public class PatternIndexB
                {
                   rtnIndex = NOTFOUND;
                   // System.out.println ("inside inner if statement (reached)");
-                  // isPat = false;
-                  isPat = true;   // Mutated statement
+                  isPat = false;
+                  //isPat = true;   // Mutated statement
                   break;  // out of for loop
                }
             }

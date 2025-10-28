@@ -25,8 +25,8 @@ public class PatternIndexA
       int patternLen = pattern.length();
 
       //System.out.println ("Before while loop (reached)");
-      // while (isPat == false && iSub + patternLen - 1 < subjectLen)
-      while (isPat == false && iSub + patternLen - 0 < subjectLen) // Mutated statement
+      while (isPat == false && iSub + patternLen - 1 < subjectLen)
+      //while (isPat == false && iSub + patternLen - 0 < subjectLen) // Mutated statement
       {
          //System.out.println ("in loop: iSub = " + iSub);
          if (subject.charAt(iSub) == pattern.charAt(0))

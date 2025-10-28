@@ -29,6 +29,7 @@ dependencies {
 	testImplementation('org.junit.jupiter:junit-jupiter')
 	testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 	testImplementation("org.assertj:assertj-core:3.27.3")
+	testImplementation("org.easymock:easymock:4.2")
 
 	// Cucumber
 	testImplementation('org.junit.platform:junit-platform-suite:1.10.2')
