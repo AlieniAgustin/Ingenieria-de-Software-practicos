@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="mocks.ejercicio2.TestIPBlackList" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-10-28T17:40:47" hostname="alieni" time="0.027">
+<testsuite name="mocks.ejercicio2.TestIPBlackList" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-10-29T01:12:12" hostname="alieni" time="0.053">
   <properties/>
-  <testcase name="ipBlacklistedAfterThreeFailedAttempts()" classname="mocks.ejercicio2.TestIPBlackList" time="0.019"/>
-  <testcase name="SuccessfulLoginOnSecondAttempt()" classname="mocks.ejercicio2.TestIPBlackList" time="0.002"/>
-  <testcase name="anIpThatAttemptsToLogInLessThanThreeTimesDoesNotAppearOnTheBlacklist()" classname="mocks.ejercicio2.TestIPBlackList" time="0.002"/>
+  <testcase name="ipBlacklistedAfterThreeFailedAttempts()" classname="mocks.ejercicio2.TestIPBlackList" time="0.022"/>
+  <testcase name="twoUnsuccessfulLoginAttempts()" classname="mocks.ejercicio2.TestIPBlackList" time="0.002"/>
+  <testcase name="successfulLoginOnTheFirstAttempt()" classname="mocks.ejercicio2.TestIPBlackList" time="0.003"/>
+  <testcase name="SuccessfulLoginOnSecondAttempt()" classname="mocks.ejercicio2.TestIPBlackList" time="0.003"/>
+  <testcase name="ipIsInBlackList()" classname="mocks.ejercicio2.TestIPBlackList" time="0.003"/>
+  <testcase name="twoIncorrectAttemptsWithDifferentIpAddresses()" classname="mocks.ejercicio2.TestIPBlackList" time="0.002"/>
+  <testcase name="theIPIsBlocked()" classname="mocks.ejercicio2.TestIPBlackList" time="0.003"/>
+  <testcase name="anIpThatAttemptsToLogInLessThanThreeTimesDoesNotAppearOnTheBlacklist()" classname="mocks.ejercicio2.TestIPBlackList" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="mocks.teoria.OrderTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2025-10-28T17:40:47" hostname="alieni" time="0.034">
+<testsuite name="mocks.teoria.OrderTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2025-10-29T01:12:12" hostname="alieni" time="0.039">
   <properties/>
-  <testcase name="createOrder()" classname="mocks.teoria.OrderTest" time="0.006"/>
-  <testcase name="calculateLineTotalsUsingFake()" classname="mocks.teoria.OrderTest" time="0.008"/>
-  <testcase name="calculateLineTotalsUsingMock()" classname="mocks.teoria.OrderTest" time="0.004"/>
+  <testcase name="createOrder()" classname="mocks.teoria.OrderTest" time="0.009"/>
+  <testcase name="calculateLineTotalsUsingFake()" classname="mocks.teoria.OrderTest" time="0.007"/>
+  <testcase name="calculateLineTotalsUsingMock()" classname="mocks.teoria.OrderTest" time="0.005"/>
   <testcase name="saveOrder()" classname="mocks.teoria.OrderTest" time="0.002"/>
-  <testcase name="saveOrderAndVerifyExpectationsUsingMock()" classname="mocks.teoria.OrderTest" time="0.002"/>
+  <testcase name="saveOrderAndVerifyExpectationsUsingMock()" classname="mocks.teoria.OrderTest" time="0.001"/>
   <testcase name="saveOrderWithDataAccessVerification()" classname="mocks.teoria.OrderTest" time="0.002"/>
-  <testcase name="calculateSingleLineTotal()" classname="mocks.teoria.OrderTest" time="0.001"/>
+  <testcase name="calculateSingleLineTotal()" classname="mocks.teoria.OrderTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
